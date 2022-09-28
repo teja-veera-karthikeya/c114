@@ -1,5 +1,7 @@
+nose_x=0;
+nose_y=0;
 function preload(){
-
+    mustache_filter=loadImage('https://i.postimg.cc/Bv9NmQS9/Screenshot-2022-09-26-123428-removebg-preview.png')
 }
 function setup(){
     canvas = createCanvas(300,300);
@@ -19,13 +21,16 @@ function modelLoaded(){
 function gotPoses(results){
     if(results.length > 0){
         console.log(results);
-        console.log("nose x ="+ results[0].pose.nose.x)
-        console.log("nose y ="+ results[0].pose.nose.y)
+        nose_x=results[0].pose.nose.x-40;
+        nose_y=results[0].pose.nose.y-15;
+        console.log("nose x ="+nose_x);
+        console.log("nose y ="+nose_y);
     }
 }
 
 function draw(){
     image(video,0,0,300,300);
+    image(mustache_filter,nose_x,nose_y,120,60);
 }
 
 function take_snapshot(){
